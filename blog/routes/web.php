@@ -15,37 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('posts');
+
+    $posts =  Post::all();
+
+    ddd($posts[1]->getContents());
+    return view('posts', [
+        'posts' => $posts
+    ]);
 });
 
 Route::get('posts/{post}', function ($slug) {
 
-    // Find a post its slug and pass it to a view called "post"
-
-    $post = Post::find($slug);
     return view('post', [
-        'post' => $post
+        'post' =>  Post::find($slug)
     ]);
-    /*$path = __DIR__ . "/../resources/posts/{$slug}.html";
 
-    if(! file_exists($path)){
-        //dd('file does not exists');
-        //ddd('file does not exists');
-        //abort(404);
-        return redirect('/');
-    }
-
-    //$post = file_get_contents($path);
-    //now()->addMinute()
-    $post = cache()->remember("posts.{$slug}", 1200, fn() =>  file_get_contents($path));
-    return view('post', [
-        'post' =>  $post//$post
-
-    ]);*/
 })->where('post', '[A-z_\-]+');
-
-//Another methods to constraints
-/*whereAlpha();
-whereAlphaNumeric();
-whereNumber();*/
 
