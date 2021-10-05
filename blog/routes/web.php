@@ -2,7 +2,7 @@
 
 use \App\Models\Post;
 use Illuminate\Support\Facades\Route;
-
+use \Spatie\YamlFrontMatter\YamlFrontMatter;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,11 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    $posts =  Post::all();
+    $document = YamlFrontMatter::parseFile(
+        resource_path('posts/my-fourth-post.html')
+    );
+    ddd($document->body());
+   /* $posts =  Post::all();
 
     return view('posts', [
         'posts' => $posts
-    ]);
+    ]);*/
 });
 
 Route::get('posts/{post}', function ($slug) {
