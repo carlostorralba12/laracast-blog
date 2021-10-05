@@ -18,7 +18,6 @@ Route::get('/', function () {
 
     $posts =  Post::all();
 
-    ddd($posts[1]->getContents());
     return view('posts', [
         'posts' => $posts
     ]);
