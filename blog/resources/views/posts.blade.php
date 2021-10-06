@@ -1,13 +1,10 @@
-<!doctype html>
-<title>My Blog</title>
-<link rel="stylesheet" href="/css/app.css">
-<body>
+<x-layout>
     @foreach ($posts as $post)
         <article>
 
             <h1>
                 <a href="/posts/{{ $post->slug }}">
-                   {{ $post->title }}
+                    {{ $post->title }}
                 </a>
 
             </h1>
@@ -17,4 +14,9 @@
             </div>
         </article>
     @endforeach
-</body>
+</x-layout>
+
+
+
+
+

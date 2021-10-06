@@ -1,7 +1,7 @@
-<!doctype html>
-<title>My Blog</title>
-<link rel="stylesheet" href="/css/app.css">
-<body>
+
+
+<x-layout>
+
     <article>
 
         <h1>
@@ -14,4 +14,7 @@
     </article>
 
     <a href="/">Go back</a>
-</body>
+
+</x-layout>
+
+
