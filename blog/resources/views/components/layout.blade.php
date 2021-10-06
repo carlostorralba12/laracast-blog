@@ -3,5 +3,5 @@
 <link rel="stylesheet" href="/css/app.css">
 
 <body>
-    {{ $slot }}}
+    {{ $slot }}
 </body>
