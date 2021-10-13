@@ -5,6 +5,8 @@
 
             <x-posts-grid :posts="$posts"></x-posts-grid>
 
+            {{$posts->links()}}
+
         @else
             <p class="text-center">No posts yet. Please check back later</p>
         @endif
