@@ -4,6 +4,9 @@ use \App\Models\Post;
 use \App\Models\Category;
 use \App\Models\User;
 use \App\Http\Controllers\PostsController;
+use \App\Http\Controllers\PostCommentController;
+use \App\Http\Controllers\SessionController;
+use \App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,19 +23,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PostsController::class, 'index'])->name('home');
 
 Route::get('posts/{post:slug}', [PostsController::class, 'show']);
+Route::post('posts/{post:slug}/comments', [PostCommentController::class, 'store']);
 
-/*Route::get('categories/{category:slug}', function (Category $category){
+Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
+Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
-    return view('posts', [
-        'posts' => $category->posts,
-        'currentCategory' => $category,
-        'categories' => Category::all()
-    ]);
-});*/
+Route::get('login', [SessionController::class, 'create'])->middleware('guest');
+Route::post('login', [SessionController::class, 'store'])->middleware('guest');
+Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');
 
-Route::get('authors/{author:username}', function (User $author){
 
-    return view('posts.index', [
-        'posts' => $author->posts
-    ]);
-});

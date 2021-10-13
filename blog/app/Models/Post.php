@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
-    //protected $fillable = ['title', 'excerpt', 'body'];
+
     protected $with = ['category', 'author'];
 
     public function getRouteKeyName()
@@ -39,6 +38,12 @@ class Post extends Model
             );
         });
     }
+
+    public function comments(){
+        // hasOne, hasMany, BelongsTo, BelongsToMany
+        return $this->hasMany(Comment::class);
+    }
+
     public function category(){
         // hasOne, hasMany, BelongsTo, BelongsToMany
         return $this->belongsTo(Category::class);
